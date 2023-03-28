@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from pygame.math import Vector2
 
 
 class Character:
@@ -12,6 +13,8 @@ class Character:
 
     def draw(self, screen): # draws a circle
         pygame.draw.circle(screen, (255, 0, 0), self.position, self.size)
+
+
 
 
 class Target:
@@ -45,13 +48,25 @@ def main():
     dude = Character([100, 100], 15) # instanciate Character
     target = Target([600, 300], 5) # instanciate Target -
 
-    dude.setPosition([300,300]) #TODO Vector2 has to be declared in edgy brackets using 2 ints
-    dude.setPosition(dudePos) #TODO Vector2 has to be declared in edgy brackets using 2 ints
-    #dude.setPosition(100,100) #TODO unexpeted argument
+    #dude.setPosition([300,300]) #TODO Vector2 has to be declared in edgy brackets using 2 ints
+    # dude.setPosition(100,100) #TODO unexpeted argument
+    dude.setPosition(dudePos)
+
+    #movementDirection = target.position-dudePos
+    #movementDirection = target.position + [1,1]
+    movementDirection = Vector2(target.position) - Vector2(dudePos) #TODO is not accepting a minus?
+
+
+
+    dude.setPosition(dudePos)
+
 
     # Game loop, runs forever
     while (True):
         # Process OS events
+
+
+
         for event in pygame.event.get():
             # Checks if the user closed the window
             if (event.type == pygame.QUIT):
@@ -83,6 +98,8 @@ def main():
 
         # Clears the screen with a very dark blue (0, 0, 20)
         screen.fill((0, 0, 0))
+
+        dude.setPosition(movementDirection)
 
         dude.draw(screen)
         target.draw(screen)
