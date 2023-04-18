@@ -2,6 +2,8 @@
 import pygame
 from pygame.math import Vector2
 
+#TODO starting Point week 2
+
 # Define the size/resolution of our window
 res_x = 800
 res_y = 600
