@@ -65,10 +65,10 @@ def main():
             elif (event.type == pygame.KEYDOWN):
                 if (event.key == pygame.K_ESCAPE):
                     return
-                elif (event.key == pygame.K_UP):
+                elif (event.key == pygame.K_UP and dude.position.x < 620):
                     #distance += 1;
                     dude.position += posOffset
-                elif (event.key == pygame.K_DOWN):
+                elif (event.key == pygame.K_DOWN and dude.position.x > 20):
                     dude.position -= posOffset
         # Clears the screen
         if(dude.position.x > 300):
