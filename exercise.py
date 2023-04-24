@@ -38,6 +38,7 @@ def main():
     res_x = 640
     res_y = 480
     posOffset = [10,0]
+    clock = pygame.time.Clock()
 
     # Create a window and a display surface
     screen = pygame.display.set_mode((res_x, res_y))
@@ -71,30 +72,21 @@ def main():
                 elif (event.key == pygame.K_DOWN and dude.position.x > 20):
                     dude.position -= posOffset
         # Clears the screen
-        if(dude.position.x > 300):
+        if( dude.position.x < 620):
+            dude.position = dude.position + [pygame.time.get_ticks() / 10000, 0]
+            #res_x = pygame.math.
+
+        if(dude.position.x > 300): #this is so the dude falls of the ledge
             dude.velocity = [0,1]
+
         if(dude.position.y > 450):
             dude.velocity = [0,0]
         screen.fill((0,0,0))
 
-        #Draw path in Grey 
-       # pygame.draw.line(screen,(125,125,125),dude.position, target.position,1)
 
         #Draw path in green
         pygame.draw.line(screen,(0,135,0),[0,100], [300,100],1)
-        #Draw target in Blue 
-        #direcaoTarget=numpy.subtract(target.position, dude.position)
-        #direcaoTarget=Vector2(target.position) - Vector2(dude.position)
-        #pygame.draw.line(screen, (0,0,255), [0,0], direcaoTarget, 1)
-        #Draw normalized in green
-       # normalized=direcaoTarget.normalize()
-      #  velocityNormalized=normalized*dude.speed
-       # pygame.draw.line(screen, (0,255,0), dude.position,
-        #                 (Vector2(dude.position)+
-        #                  Vector2(velocityNormalized)*dude.speed*1000), 4)
 
-       # dude.velocity=velocityNormalized
-        #dude.position += posOffset
         dude.move()
 
         dude.draw(screen)
